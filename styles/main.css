@@ -1,0 +1,50 @@
+/* External CSS styles go here */
+#puzzle-container {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    gap: 5px;
+    margin-top: 20px;
+}
+
+.puzzle-piece {
+    width: 100px;
+    height: 100px;
+    background-size: 300px 300px;
+    cursor: pointer;
+}
+
+#puzzle-board {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    gap: 5px;
+    margin-top: 20px;
+    border: 2px solid #000; /* Border around the puzzle board */
+    position: relative;
+}
+
+.drop-target {
+    background-color: #f0f0f0; /* Highlight color for drop areas */
+    height: 100px;
+    width: 100px;
+    border: 1px solid #ccc;
+    position: relative;
+}
+
+.selected-piece {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+#solved-screen {
+    background-color: #5cb85c; /* Green color */
+    color: white;
+    text-align: center;
+    padding: 20px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+}
