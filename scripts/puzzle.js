@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Your JavaScript code here
 
     // Sample image URL
-    const imageUrl = 'https://placekitten.com/300/300';
+    const imageUrl = 'https://picsum.photos/300/300';
 
     // Function to create puzzle pieces
     function createPuzzlePieces() {
