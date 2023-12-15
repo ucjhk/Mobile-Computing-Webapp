@@ -1,15 +1,23 @@
 <!DOCTYPE html>
-<html lang="de">
-  <head>
-    <meta charset="utf-8">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puzzle Game</title>
 
-    <title>Titel</title>
+    <!-- Link to your external CSS file -->
+    <link rel="stylesheet" href="styles\main.css">
+</head>
+<body>
 
-    <link rel = "stylesheet" type = "text/css" href = "styles\test.css">
-    <script src="scripts\test.js"></script>
-  </head>
-  <body>
-    
-  </body>
+    <div id="puzzle-container"></div>
+    <div id="puzzle-board" class="drop-targets"></div>
+    <div id="solved-screen" style="display: none;">Puzzle Solved!</div>
+
+    <!-- Link to your JavaScript file at the end of the body -->
+    <script defer src="scripts\puzzle.js"></script>
+</body>
 </html>
+
+
+
