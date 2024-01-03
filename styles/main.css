@@ -1,31 +1,46 @@
 /* External CSS styles go here */
+
+:root {
+    --piece-count: var(--js-piece-count, 9);
+    --board-size: var(--js-board-size, 300px);
+
+    --piece-sqrt: calc(sqrt(var(--piece-count)));
+    --piece-size: calc(var(--board-size) / var(--piece-sqrt));
+  }
+
 #puzzle-container {
+    background-color: lightblue;
     display: grid;
-    grid-template-columns: repeat(3, 100px);
+    grid-template-columns: repeat(var(--piece-sqrt), var(--piece-size));
+    min-width: var(--board-size);
+    min-height: var(--board-size);
+    max-width: fit-content;
+    max-height: fit-content;
     gap: 5px;
     margin-top: 20px;
 }
 
 .puzzle-piece {
-    width: 100px;
-    height: 100px;
-    background-size: 300px 300px;
+    width: var(--piece-size);
+    height: var(--piece-size);
+    background-size: var(--board-size) var(--board-size);
     cursor: pointer;
 }
 
 #puzzle-board {
     display: grid;
-    grid-template-columns: repeat(3, 100px);
+    grid-template-columns: repeat(var(--piece-sqrt), var(--piece-size));
     gap: 5px;
     margin-top: 20px;
+    padding-right: 2px;
+    max-width: fit-content;
     border: 2px solid #000; /* Border around the puzzle board */
-    position: relative;
 }
 
 .drop-target {
     background-color: #f0f0f0; /* Highlight color for drop areas */
-    height: 100px;
-    width: 100px;
+    height: var(--piece-size);
+    width: var(--piece-size);
     border: 1px solid #ccc;
     position: relative;
 }
