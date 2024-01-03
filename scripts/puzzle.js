@@ -170,6 +170,7 @@ document.addEventListener('DOMContentLoaded', function () {
             // Puzzle solved, display the success screen
             solvedScreen = document.getElementById('solved-screen');
             solvedScreen.classList.remove('show');
+            void solvedScreen.offsetWidth;
             solvedScreen.classList.add('show');
             //solvedScreen.style.display = 'block';
         }
