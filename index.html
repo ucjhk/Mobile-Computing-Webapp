@@ -18,13 +18,14 @@
     <main>
         <span>
             <div id="puzzle-container"></div>
-            <label for="selectNumber">Image Size:</label>
-            <select id="selectNumber" name="selectNumber">
+            <label for="select-number">Image Size:</label>
+            <select id="select-number" name="selectNumber">
                 <option value="9">3x3</option>
                 <option value="16">4x4</option>
                 <option value="25">5x5</option>
             </select>
             <button id="shuffle-btn">Shuffle</button>
+            <input type="file" id="image-input" name="image" accept="image/*">
         </span>
         <div id="puzzle-board" class="drop-targets"></div>
         <div id="solved-screen" style="display: none;">Puzzle Solved!</div>

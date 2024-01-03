@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Sample image URL
     const imageUrl = 'https://picsum.photos/300/300';
+    ownImage = null;
     // Event listener for drag over on the puzzle container
     document.getElementById('puzzle-container').addEventListener('dragover', (event) => {
         event.preventDefault();
@@ -14,8 +15,11 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('shuffle-btn').addEventListener('click', shuffelPieces);
     document.getElementById('shuffle-btn').addEventListener('touchstart', shuffelPieces);
 
-    document.getElementById('selectNumber').addEventListener('change', (event) => changeSize(event.target.value));
-    document.getElementById('selectNumber').addEventListener('touchstart', (event) => changeSize(event.target.value));
+    document.getElementById('image-input').addEventListener('change', (event) => changeImage(event.target));
+    document.getElementById('image-input').addEventListener('touchstart', (event) => changeImage(event.target));
+
+    document.getElementById('select-number').addEventListener('change', (event) => changeSize(event.target.value));
+    document.getElementById('select-number').addEventListener('touchstart', (event) => changeSize(event.target.value));
 
     // Create puzzle pieces and drop targets on page load
     createPuzzlePieces();
@@ -48,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const piece = document.createElement('div');
             piece.classList.add('puzzle-piece');
             piece.dataset.pieceId = i.toString(); // Unique identifier for the puzzle piece
-            piece.style.backgroundImage = `url(${imageUrl})`;
+            piece.style.backgroundImage = ownImage != null ? ownImage : `url(${imageUrl})`;
             piece.style.backgroundPosition = `-${(i % Math.sqrt(pieceSize)) * (boardSize / Math.sqrt(pieceSize))}px
              -${Math.floor(i / Math.sqrt(pieceSize)) * (boardSize / Math.sqrt(pieceSize))}px`;
 
@@ -88,6 +92,15 @@ document.addEventListener('DOMContentLoaded', function () {
         resetContainers();
         document.documentElement.style.setProperty('--js-piece-count', value);
         createPuzzlePieces(value);
+    }
+
+    function changeImage(value){
+        if (value.files && value.files[0]) {
+            resetContainers();
+            console.log(value);
+            ownImage = `url(${URL.createObjectURL(value.files[0])})`;
+            createPuzzlePieces(document.getElementById('select-number').value);
+        }
     }
 
     // Function to handle drop event on puzzle pieces
