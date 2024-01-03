@@ -1,4 +1,6 @@
 /* External CSS styles go here */
+@import url('constants.css');
+
 :root {
     --piece-count: var(--js-piece-count, 9);
     --board-size: var(--js-board-size, 300px);
@@ -10,6 +12,7 @@
 
 
 body {
+    background-color: var(--background-color);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -50,11 +53,25 @@ main{
     align-items: center;
     justify-content: center;
     margin: 0;
+    margin-top: 2em;
     gap: 1em;
 }
 
+#start-btn {
+    margin-bottom: 10px;
+    margin: -2em;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: darkolivegreen;
+    color: var(--secondary-color);
+    border: 1px solid var(--secondary-color);
+    cursor: pointer;
+    z-index: 2;
+    visibility: visible;
+}
+
 #puzzle-container {
-    background-color: lightblue;
+    background-color: var(--primary-color);
     display: grid;
     grid-template-columns: repeat(var(--piece-sqrt), var(--piece-size));
     min-width: var(--board-size);
@@ -62,7 +79,6 @@ main{
     max-width: fit-content;
     max-height: fit-content;
     gap: 5px;
-    margin-top: 20px;
 }
 
 
@@ -77,17 +93,16 @@ main{
     display: grid;
     grid-template-columns: repeat(var(--piece-sqrt), var(--piece-size));
     gap: 5px;
-    margin-top: 20px;
     padding-right: 2px;
     max-width: fit-content;
-    border: 2px solid #000; /* Border around the puzzle board */
+    border: 3px solid var(--light-color); /* Border around the puzzle board */
 }
 
 .drop-target {
-    background-color: #f0f0f0; /* Highlight color for drop areas */
+    background-color: var(--primary-color); /* Highlight color for drop areas */
     height: var(--piece-size);
     width: var(--piece-size);
-    border: 1px solid #ccc;
+    border: 1px solid var(--secondary-color);
     position: relative;
 }
 
@@ -108,6 +123,27 @@ main{
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 24px;
+    visibility: hidden;
+    opacity: 0;
+}
+
+  #solved-screen.show {
+    animation: anime 7s 1;
+}
+
+  @keyframes anime {
+    0% {
+        opacity: 1;
+        visibility: visible;
+    }
+    75% {
+        opacity: 1;
+        visibility: visible;
+    }
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
 }
 
 /*********************************************************/

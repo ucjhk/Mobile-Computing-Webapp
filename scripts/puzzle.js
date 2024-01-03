@@ -11,6 +11,9 @@ document.addEventListener('DOMContentLoaded', function () {
     // Event listener for drop on the puzzle container
     document.getElementById('puzzle-container').addEventListener('drop', handleDrop);
 
+    document.getElementById('start-btn').addEventListener('click', toogleButton);
+    document.getElementById('start-btn').addEventListener('touchstart', toogleButton);
+
     document.getElementById('shuffle-btn').addEventListener('click', shuffelPieces);
     document.getElementById('shuffle-btn').addEventListener('touchstart', shuffelPieces);
 
@@ -75,6 +78,17 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    function toogleButton() {
+        var button = document.getElementById('start-btn');
+        button.style.visibility = 'hidden';
+        shuffelPieces();
+    }
+
+    function showButton() {
+        var button = document.getElementById('start-btn');
+        button.style.visibility = 'visible';
+    }
+
     function shuffelPieces(){
         const puzzleContainer = document.getElementById('puzzle-container');
         const puzzlePieces = puzzleContainer.querySelectorAll('.puzzle-piece');
@@ -109,6 +123,8 @@ document.addEventListener('DOMContentLoaded', function () {
         const pieceIndex = event.dataTransfer.getData('text/plain');
         const draggedPiece = document.querySelector(`.puzzle-piece[data-piece-id="${pieceIndex}"]`);
         const puzzleContainer = document.getElementById('puzzle-container');
+
+        if(!draggedPiece.draggable) return;
 
         // Check if the drop area is occupied
         if (event.target.classList.contains('drop-target')) {
@@ -148,8 +164,14 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         if (isSolved) {
+            showButton();
+            resetContainers();
+            createPuzzlePieces(document.getElementById('select-number').value);
             // Puzzle solved, display the success screen
-            document.getElementById('solved-screen').style.display = 'block';
+            solvedScreen = document.getElementById('solved-screen');
+            solvedScreen.classList.remove('show');
+            solvedScreen.classList.add('show');
+            //solvedScreen.style.display = 'block';
         }
     }
 
