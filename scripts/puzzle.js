@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Sample image URL
     const imageUrl = 'https://picsum.photos/300/300';
-
     // Event listener for drag over on the puzzle container
     document.getElementById('puzzle-container').addEventListener('dragover', (event) => {
         event.preventDefault();
