@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('select-number').addEventListener('touchstart', (event) => changeSize(event.target.value));
 
     // Create puzzle pieces and drop targets on page load
-    createPuzzlePieces();
+    createPuzzlePieces(9, imageUrl, 300);
 
     // Function to create puzzle pieces
     function createPuzzlePieces(pieceSize = 9, url = imageUrl, boardSize = 300) {
