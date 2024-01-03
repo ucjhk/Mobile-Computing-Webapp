@@ -38,6 +38,10 @@ main{
     margin-right: 0.3em;
 }
 
+#settings > input{
+    margin-right: 0.5em;
+}
+
 
 
 #puzzle {
@@ -119,14 +123,16 @@ main{
 
     #settings {
         flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
     }
 
     #settings > * {
-        margin-bottom: 0.5em;
-        margin-right: 0.3em;
+        margin-bottom: 1em;
+        margin-right: 1em;
     }
 
-    #settings > label{
+    #settings > input{
         margin-right: 0;
     }
 }
