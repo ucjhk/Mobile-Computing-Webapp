@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function () {
     createPuzzlePieces();
 
     // Function to create puzzle pieces
-    function createPuzzlePieces(pieceSize = 9, boardSize = 300) {
+    function createPuzzlePieces(pieceSize = 9, url = imageUrl, boardSize = 300) {
         const puzzleContainer = document.getElementById('puzzle-container');
         const puzzleBoard = document.getElementById('puzzle-board');
 
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const piece = document.createElement('div');
             piece.classList.add('puzzle-piece');
             piece.dataset.pieceId = i.toString(); // Unique identifier for the puzzle piece
-            piece.style.backgroundImage = ownImage != null ? ownImage : `url(${imageUrl})`;
+            piece.style.backgroundImage = `url(${url})`;
             piece.style.backgroundPosition = `-${(i % Math.sqrt(pieceSize)) * (boardSize / Math.sqrt(pieceSize))}px
              -${Math.floor(i / Math.sqrt(pieceSize)) * (boardSize / Math.sqrt(pieceSize))}px`;
 
@@ -98,8 +98,8 @@ document.addEventListener('DOMContentLoaded', function () {
         if (value.files && value.files[0]) {
             resetContainers();
             console.log(value);
-            ownImage = `url(${URL.createObjectURL(value.files[0])})`;
-            createPuzzlePieces(document.getElementById('select-number').value);
+            ownImage = URL.createObjectURL(value.files[0]);
+            createPuzzlePieces(document.getElementById('select-number').value, ownImage);
         }
     }
 
