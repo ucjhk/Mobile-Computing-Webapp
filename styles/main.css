@@ -118,10 +118,11 @@ main{
     }
 
     #settings {
-        flex-direction: column;
+        flex-wrap: wrap;
     }
 
     #settings > * {
+        margin-bottom: 0.5em;
         margin-right: 0.3em;
     }
 
