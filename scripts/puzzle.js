@@ -15,16 +15,16 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('shuffle-btn').addEventListener('touchstart', shuffelPieces);
 
     document.getElementById('image-input').addEventListener('change', (event) => changeImage(event.target));
-    //document.getElementById('image-input').addEventListener('touchstart', (event) => changeImage(event.target));
+    document.getElementById('image-input').addEventListener('touchstart', (event) => changeImage(event.target));
 
     document.getElementById('select-number').addEventListener('change', (event) => changeSize(event.target.value));
     document.getElementById('select-number').addEventListener('touchstart', (event) => changeSize(event.target.value));
 
     // Create puzzle pieces and drop targets on page load
-    createPuzzlePieces(9, imageUrl, 300);
+    createPuzzlePieces();
 
     // Function to create puzzle pieces
-    function createPuzzlePieces(pieceSize = 9, url = imageUrl, boardSize = 300) {
+    function createPuzzlePieces(pieceSize = 9, boardSize = 300) {
         const puzzleContainer = document.getElementById('puzzle-container');
         const puzzleBoard = document.getElementById('puzzle-board');
 
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const piece = document.createElement('div');
             piece.classList.add('puzzle-piece');
             piece.dataset.pieceId = i.toString(); // Unique identifier for the puzzle piece
-            piece.style.backgroundImage = `url(${url})`;
+            piece.style.backgroundImage = `url(${imageUrl})`;
             piece.style.backgroundPosition = `-${(i % Math.sqrt(pieceSize)) * (boardSize / Math.sqrt(pieceSize))}px
              -${Math.floor(i / Math.sqrt(pieceSize)) * (boardSize / Math.sqrt(pieceSize))}px`;
 
@@ -97,8 +97,8 @@ document.addEventListener('DOMContentLoaded', function () {
         if (value.files && value.files[0]) {
             resetContainers();
             console.log(value);
-            ownImage = URL.createObjectURL(value.files[0]);
-            createPuzzlePieces(document.getElementById('select-number').value, ownImage);
+            imageUrl = URL.createObjectURL(value.files[0]);
+            createPuzzlePieces(document.getElementById('select-number').value);
         }
     }
 
