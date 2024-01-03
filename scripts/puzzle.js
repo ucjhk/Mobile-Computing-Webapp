@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('shuffle-btn').addEventListener('touchstart', shuffelPieces);
 
     document.getElementById('image-input').addEventListener('change', (event) => changeImage(event.target));
-    document.getElementById('image-input').addEventListener('touchstart', (event) => changeImage(event.target));
+    //document.getElementById('image-input').addEventListener('touchstart', (event) => changeImage(event.target));
 
     document.getElementById('select-number').addEventListener('change', (event) => changeSize(event.target.value));
     document.getElementById('select-number').addEventListener('touchstart', (event) => changeSize(event.target.value));
