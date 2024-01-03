@@ -117,6 +117,10 @@ main{
         gap: 1em;
     }
 
+    #settings {
+        flex-direction: column;
+    }
+
     #settings > * {
         margin-right: 0.3em;
     }
