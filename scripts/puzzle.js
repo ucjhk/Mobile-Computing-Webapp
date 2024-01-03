@@ -12,8 +12,10 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('puzzle-container').addEventListener('drop', handleDrop);
 
     document.getElementById('shuffle-btn').addEventListener('click', shuffelPieces);
+    document.getElementById('shuffle-btn').addEventListener('touchstart', shuffelPieces);
 
     document.getElementById('selectNumber').addEventListener('change', (event) => changeSize(event.target.value));
+    document.getElementById('selectNumber').addEventListener('touchstart', (event) => changeSize(event.target.value));
 
     // Create puzzle pieces and drop targets on page load
     createPuzzlePieces();
