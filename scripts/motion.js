@@ -11,7 +11,7 @@ function MotionHandler(){
     }
 
     this.stop = function () {
-        if(this.motionTimer.stop() > 2 || this.started){
+        if(this.motionTimer.stop() > 2 && this.started){
             this.started = false;
             this.finished = true;
             return true;
