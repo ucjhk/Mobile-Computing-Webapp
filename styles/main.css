@@ -57,11 +57,11 @@ main{
     display: none;
 }
 
-.devicemotion #start-txt {
+.devicemotion #start-btn {
     display: none;
 }
 
-.no-devicemotion #start-btn {
+.no-devicemotion #start-txt {
     display: none;
 }
 
