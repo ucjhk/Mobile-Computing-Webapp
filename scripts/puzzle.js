@@ -1,3 +1,33 @@
+function shuffelPieces(){
+    const puzzleContainer = document.getElementById('puzzle-container');
+    const puzzlePieces = puzzleContainer.querySelectorAll('.puzzle-piece');
+    while (puzzleContainer.firstChild) {
+        puzzleContainer.removeChild(puzzleContainer.firstChild);
+    }
+    shuffleArray(puzzlePieces).forEach(piece => {
+        piece.draggable = true;
+        puzzleContainer.appendChild(piece);
+    });
+}
+
+
+function toogleButton() {
+    hideButton();
+    shuffelPieces();
+    timer.start();
+    window.scrollTo(0, document.body.scrollHeight);
+}
+
+function hideButton() {
+    var button = document.getElementById('start-btn');
+    button.style.visibility = 'hidden';
+}
+
+function showButton() {
+    var button = document.getElementById('start-btn');
+    button.style.visibility = 'visible';
+}
+
 
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -83,35 +113,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         createPuzzlePieces(pieceSize);
         showButton();
-    }
-
-    function toogleButton() {
-        hideButton();
-        shuffelPieces();
-        timer.start();
-        window.scrollTo(0, document.body.scrollHeight);
-    }
-
-    function hideButton() {
-        var button = document.getElementById('start-btn');
-        button.style.visibility = 'hidden';
-    }
-
-    function showButton() {
-        var button = document.getElementById('start-btn');
-        button.style.visibility = 'visible';
-    }
-
-    function shuffelPieces(){
-        const puzzleContainer = document.getElementById('puzzle-container');
-        const puzzlePieces = puzzleContainer.querySelectorAll('.puzzle-piece');
-        while (puzzleContainer.firstChild) {
-            puzzleContainer.removeChild(puzzleContainer.firstChild);
-        }
-        shuffleArray(puzzlePieces).forEach(piece => {
-            piece.draggable = true;
-            puzzleContainer.appendChild(piece);
-        });
     }
 
     function changeSize(value){
