@@ -3,24 +3,23 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('motion-request-btn').addEventListener('click', requestDeviceOrientation);
 
 
-    async function requestDeviceOrientation() {
-        document.getElementById('output').textContent = 'hi';
-        if (typeof DeviceOrientationEvent.requestPermission === 'function') {
-            document.getElementById('output').textContent = 'DeviceOrientationEvent is supported';
-            try {
-                const permissionState = await DeviceOrientationEvent.requestPermission();
-                if (permissionState == 'granted') {
-                    window.addEventListener('deviceorientation', handleOrientation);
-                }
-            }
-            catch (error) {
-                console.error(error);
-            }
+    function requestDeviceOrientation() {
+        // feature detect
+        if (typeof DeviceMotionEvent.requestPermission === 'function') {
+          DeviceMotionEvent.requestPermission()
+            .then(permissionState => {
+              if (permissionState === 'granted') {
+                window.addEventListener('devicemotion', handleOrientation);
+              }
+            })
+            .catch(console.error);
+        } else {
+          // handle regular non iOS 13+ devices
         }
-    }
+      }
 
     if (Modernizr.devicemotion) {
-        window.addEventListener('deviceorientation', handleOrientation, true);
+        window.addEventListener('deviceorientation', handleOrientation);
     } else {
         // Device does not support accelerometer events
         console.log('Accelerometer not supported on this device.');
