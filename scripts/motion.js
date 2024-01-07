@@ -1,4 +1,4 @@
-if (Modernizr.devicemotion) {
+if (Modernizr.devicemotion || window.DeviceMotionEvent) {
     window.addEventListener('deviceorientation', handleOrientation, true);
 } else {
     // Device does not support accelerometer events
