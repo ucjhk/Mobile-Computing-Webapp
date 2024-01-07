@@ -1,4 +1,15 @@
-if (Modernizr.devicemotion || window.DeviceMotionEvent) {
+if (typeof DeviceOrientationEvent != 'undefined' && typeof window.DeviceOrientationEvent.requestPermission === 'function') {
+    try {
+        const permissionState = window.DeviceOrientationEvent.requestPermission();
+        if (permissionState == 'granted') {
+            window.addEventListener('deviceorientation', handleOrientation);
+        }
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+else if (Modernizr.devicemotion) {
     window.addEventListener('deviceorientation', handleOrientation, true);
 } else {
     // Device does not support accelerometer events
