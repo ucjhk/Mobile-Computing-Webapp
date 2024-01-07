@@ -1,8 +1,11 @@
 document.addEventListener('DOMContentLoaded', function () {
 
+    document.getElementById('motion-request-btn').addEventListener('click', requestMotion);
+    document.getElementById('motion-request-btn').addEventListener('touchstart', requestMotion);
+
+
     function requestMotion() {
         // feature detect
-        if (typeof DeviceMotionEvent.requestPermission === 'function') {
           DeviceMotionEvent.requestPermission()
             .then(permissionState => {
               if (permissionState === 'granted') {
@@ -10,10 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
               }
             })
             .catch(console.error);
-        }
       }
-
-    requestMotion();
 
     if (Modernizr.devicemotion) {
         window.addEventListener('deviceorientation', handleMotion, true);
