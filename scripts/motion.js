@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function requestMotion() {
         // feature detect
+        if (typeof DeviceMotionEvent.requestPermission === 'function') {
           DeviceMotionEvent.requestPermission()
             .then(permissionState => {
               if (permissionState === 'granted') {
@@ -13,7 +14,10 @@ document.addEventListener('DOMContentLoaded', function () {
               }
             })
             .catch(console.error);
-      } 
+        }
+      }
+
+    requestMotion();
 
     if (Modernizr.devicemotion) {
         window.addEventListener('deviceorientation', handleMotion, true);
