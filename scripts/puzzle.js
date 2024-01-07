@@ -1,6 +1,6 @@
 var imageUrl = 'https://picsum.photos/300/300';
 
-function shuffelPieces(){
+function shufflePieces(){
     const puzzleContainer = document.getElementById('puzzle-container');
     const puzzlePieces = puzzleContainer.querySelectorAll('.puzzle-piece');
     while (puzzleContainer.firstChild) {
@@ -13,7 +13,7 @@ function shuffelPieces(){
 }
 
 function toogleButton() {
-    shuffelPieces();
+    shufflePieces();
     startPuzzle();
 }
 
