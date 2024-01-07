@@ -53,6 +53,19 @@ main{
     margin-right: 0.5em;
 }
 
+.devicemotion #motion-request-btn {
+    display: none;
+}
+
+.devicemotion #start-txt {
+    display: none;
+}
+
+.no-devicemotion #start-btn {
+    display: none;
+}
+
+
 
 #puzzle {
     display: flex;
