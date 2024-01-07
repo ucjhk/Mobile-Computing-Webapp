@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function requestMotion() {
         // feature detect
-        if (typeof DeviceMotionEvent.requestPermission === 'function') {
+        /* if (typeof DeviceMotionEvent.requestPermission === 'function') {
           DeviceMotionEvent.requestPermission()
             .then(permissionState => {
               if (permissionState === 'granted') {
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
             .catch(console.error);
         } else {
           // handle regular non iOS 13+ devices
-        }
+        } */
       }
 
     if (Modernizr.devicemotion) {
