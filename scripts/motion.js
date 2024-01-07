@@ -24,6 +24,8 @@ function MotionHandler(){
 
 }
 
+const motionHandler = new MotionHandler();
+
 document.addEventListener('DOMContentLoaded', function () {
 
     document.getElementById('motion-request-btn').addEventListener('click', requestMotion);
@@ -50,8 +52,6 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log('Accelerometer not supported on this device.');
         document.getElementById('output').textContent = 'No support for deviceorientation';
     }
-
-    const motionHandler = new MotionHandler();
 
     function handleMotion(event) {
         //document.getElementById('output').textContent = event.acceleration.x;
