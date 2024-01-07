@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('select-number').addEventListener('change', (event) => changeSize(event.target.value));
     document.getElementById('select-number').addEventListener('touchstart', (event) => changeSize(event.target.value));
 
-    if (window.DeviceOrientationEvent) {
+    if (Modernizr.devicemotion) {
         // Device supports accelerometer events
     
         // Add an event listener for the device orientation change
