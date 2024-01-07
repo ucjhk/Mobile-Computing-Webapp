@@ -5,8 +5,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     function requestMotion() {
-        // feature detect
-        if (typeof DeviceMotionEvent.requestPermission === 'function') {
           DeviceMotionEvent.requestPermission()
             .then(permissionState => {
               if (permissionState === 'granted') {
@@ -14,7 +12,6 @@ document.addEventListener('DOMContentLoaded', function () {
               }
             })
             .catch(console.error);
-        }
       }
 
     if (Modernizr.devicemotion) {
@@ -26,6 +23,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function handleMotion(event) {
-        document.getElementById('output').textContent = event.acceleration.x;
+        document.getElementById('output').textContent = event;
     }
 });
