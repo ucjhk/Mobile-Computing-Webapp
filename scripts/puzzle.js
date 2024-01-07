@@ -1,7 +1,21 @@
+function Timer(){
+
+    this.startTime = Date.now();
+
+    this.start = function () {
+        startTime = Date.now();
+    }
+
+    this.stop = function () {
+        return ((Date.now() - startTime) / 1000).toFixed(3);
+    }
+}
+
 document.addEventListener('DOMContentLoaded', function () {
 
     // Sample image URL
-    imageUrl = 'https://picsum.photos/300/300';
+    var imageUrl = 'https://picsum.photos/300/300';
+    var timer = new Timer();
 
     // Event listener for drag over on the puzzle container
     document.getElementById('puzzle-container').addEventListener('dragover', (event) => {
@@ -14,14 +28,21 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('start-btn').addEventListener('click', toogleButton);
     document.getElementById('start-btn').addEventListener('touchstart', toogleButton);
 
-    document.getElementById('shuffle-btn').addEventListener('click', shuffelPieces);
-    document.getElementById('shuffle-btn').addEventListener('touchstart', shuffelPieces);
-
     document.getElementById('image-input').addEventListener('change', (event) => changeImage(event.target));
     document.getElementById('image-input').addEventListener('touchstart', (event) => changeImage(event.target));
 
     document.getElementById('select-number').addEventListener('change', (event) => changeSize(event.target.value));
     document.getElementById('select-number').addEventListener('touchstart', (event) => changeSize(event.target.value));
+
+    if (window.DeviceOrientationEvent) {
+        // Device supports accelerometer events
+    
+        // Add an event listener for the device orientation change
+        window.addEventListener('deviceorientation', handleOrientation, true);
+    } else {
+        // Device does not support accelerometer events
+        console.log('Accelerometer not supported on this device.');
+    }
 
     // Create puzzle pieces and drop targets on page load
     createPuzzlePieces();
@@ -78,10 +99,25 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    function resetContainers(pieceSize){
+        const puzzleContainer = document.getElementById('puzzle-container');
+        const puzzleBoard = document.getElementById('puzzle-board');
+        while (puzzleContainer.firstChild) {
+            puzzleContainer.removeChild(puzzleContainer.firstChild);
+        }
+        while(puzzleBoard.firstChild){
+            puzzleBoard.removeChild(puzzleBoard.firstChild);
+        }
+        createPuzzlePieces(pieceSize);
+        showButton();
+    }
+
     function toogleButton() {
         var button = document.getElementById('start-btn');
         button.style.visibility = 'hidden';
         shuffelPieces();
+        timer.start();
+        window.scrollTo(0, document.body.scrollHeight);
     }
 
     function showButton() {
@@ -102,17 +138,14 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function changeSize(value){
-        resetContainers();
         document.documentElement.style.setProperty('--js-piece-count', value);
-        createPuzzlePieces(value);
+        resetContainers(value);
     }
 
     function changeImage(value){
         if (value.files && value.files[0]) {
-            resetContainers();
-            console.log(value);
             imageUrl = URL.createObjectURL(value.files[0]);
-            createPuzzlePieces(document.getElementById('select-number').value);
+            resetContainers(document.getElementById('select-number').value);
         }
     }
 
@@ -164,16 +197,32 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         if (isSolved) {
-            showButton();
-            resetContainers();
-            createPuzzlePieces(document.getElementById('select-number').value);
-            // Puzzle solved, display the success screen
-            solvedScreen = document.getElementById('solved-screen');
-            solvedScreen.classList.remove('show');
-            void solvedScreen.offsetWidth;
-            solvedScreen.classList.add('show');
-            //solvedScreen.style.display = 'block';
+            puzzleSolved();
         }
+    }
+
+    function puzzleSolved(){
+        showButton();
+        time = timer.stop();
+        console.log(time);
+        resetContainers(document.getElementById('select-number').value);
+        // Puzzle solved, display the success screen
+        solvedScreen = document.getElementById('solved-screen');
+        solvedScreen.querySelector('.time').textContent = "in "+ time.toString() + " seconds";
+        solvedScreen.classList.remove('show');
+        void solvedScreen.offsetWidth;
+        solvedScreen.classList.add('show');
+        //solvedScreen.style.display = 'block';
+    }
+
+    function handleOrientation(event) {
+        // Access accelerometer data from the event object
+        const alpha = event.alpha; // rotation around z-axis
+        const beta = event.beta;   // rotation around x-axis
+        const gamma = event.gamma; // rotation around y-axis
+    
+        // Do something with accelerometer data
+        console.log('Alpha:', alpha, 'Beta:', beta, 'Gamma:', gamma);
     }
 
     // Function to shuffle array elements (Fisher-Yates algorithm)
@@ -187,16 +236,5 @@ document.addEventListener('DOMContentLoaded', function () {
     
         return shuffledArray;
     }   
-
-    function resetContainers(){
-        const puzzleContainer = document.getElementById('puzzle-container');
-        const puzzleBoard = document.getElementById('puzzle-board');
-        while (puzzleContainer.firstChild) {
-            puzzleContainer.removeChild(puzzleContainer.firstChild);
-        }
-        while(puzzleBoard.firstChild){
-            puzzleBoard.removeChild(puzzleBoard.firstChild);
-        }
-    }
 });
 

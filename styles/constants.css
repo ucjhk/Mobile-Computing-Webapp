@@ -5,4 +5,9 @@
     --secondary-color: bisque;
     --light-color: white;
     --dark-color: black;
+    --correct-color: darkolivegreen;
+    --text-color: #351c75;
+
+    /* Font constants */
+    --font-family: 'Work Sans', sans-serif;
   }

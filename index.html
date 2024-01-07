@@ -7,7 +7,9 @@
 
     <!-- Link to external CSS file -->
     <link rel="stylesheet" href="styles\main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
+    <script src="scripts\puzzle.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -16,7 +18,7 @@
 <body>
     <!-- Header -->
     <header>
-        <h1>Puzzle Game</h1>
+        <h1 class="animate__animated animate__bounce animate__delay-1s">Puzzle Game</h1>
     </header>
 
     <!-- Main -->
@@ -28,7 +30,6 @@
                 <option value="16">4x4</option>
                 <option value="25">5x5</option>
             </select>
-            <button id="shuffle-btn">Shuffle</button>
             <input type="file" id="image-input" name="image" accept="image/*">
         </span>
         <section id="puzzle">
@@ -38,11 +39,11 @@
             </button>
             <div id="puzzle-board" class="drop-targets"></div>
         </section>
-        <div id="solved-screen">Puzzle Solved!</div>
+        <div id="solved-screen">
+            <p>Puzzle Solved!</p>
+            <p class="time">in 3.567 seconds</p>
+        </div>
     </main>
-
-    <!-- Link to JavaScript file at the end of the body -->
-    <script defer src="scripts\puzzle.js"></script>
 </body>
 </html>
 

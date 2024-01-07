@@ -9,9 +9,17 @@
     --piece-size: calc(var(--board-size) / var(--piece-sqrt));
   }
 
+h1{
+    font-size: 2em;
+    color: var(--text-color);
+}
+
 
 
 body {
+    font-family: var(--font-family);
+    font-weight: bold;
+    color: var(--text-color);
     background-color: var(--background-color);
     display: flex;
     flex-direction: column;
@@ -62,7 +70,7 @@ main{
     margin: -2em;
     padding: 20px;
     border-radius: 5px;
-    background-color: darkolivegreen;
+    background-color: var(--correct-color);
     color: var(--secondary-color);
     border: 1px solid var(--secondary-color);
     cursor: pointer;
@@ -114,15 +122,18 @@ main{
 }
 
 #solved-screen {
-    background-color: #5cb85c; /* Green color */
-    color: white;
+    background-color: var(--correct-color);
+    color: var(--secondary-color);
+    border-radius: 10px;
     text-align: center;
-    padding: 20px;
     position: fixed;
-    top: 50%;
+    padding-left: 20px;
+    padding-right: 20px;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 24px;
+    font-size: 20px;
+    z-index: 3;
     visibility: hidden;
     opacity: 0;
 }
@@ -178,25 +189,3 @@ main{
 @media (min-width: 60rem){
 	
 }
-
-/***************************************************************/
-/* Viewport Anzeige */
-
-#js-viewport-breitenanzeiger{
-	position: fixed;
-	top: 120px;
-	right: 20px;
-	z-index: 10000;
-	background: rgba(230,72,0,0.80);
-	border: 1px solid rgba(128,42,0,90);
-	box-shadow: 0px 0px 20px rgba(0,0,0,0.10);
-	padding: 10px;
-	font-size: 11px;
-	font-weight: bold;
-	color: rgba(255,255,255,1);
-	font-family: Arial, Verdana, sans-serif;
-	text-shadow: 1px 1px 1px rgba(0,0,0,0.50);
-	text-transform: uppercase;
-}
-
-/***************************************************************/
