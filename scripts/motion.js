@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
           DeviceMotionEvent.requestPermission()
             .then(permissionState => {
               if (permissionState === 'granted') {
-                //window.addEventListener('deviceorientation', handleMotion, true);
+                window.addEventListener('deviceorientation', handleMotion, true);
               }
             })
             .catch(console.error);
