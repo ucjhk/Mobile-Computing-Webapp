@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const motionHandler = new MotionHandler();
 
     function handleMotion(event) {
-        document.getElementById('output').textContent = event.acceleration.x;
+        //document.getElementById('output').textContent = event.acceleration.x;
         if(!motionHandler.finished){
             if(Math.abs(event.acceleration.x) > 2){
                 document.getElementById('output').textContent = 'in motion';
