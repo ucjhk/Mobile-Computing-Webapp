@@ -6,17 +6,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function requestMotion() {
         // feature detect
+        if (typeof DeviceMotionEvent.requestPermission === 'function') {
           DeviceMotionEvent.requestPermission()
             .then(permissionState => {
               if (permissionState === 'granted') {
-                window.addEventListener('devicemotion', handleMotion, true);
+                window.addEventListener('devicemotion', handleMotion);
               }
             })
             .catch(console.error);
+        }
       }
 
     if (Modernizr.devicemotion) {
-        window.addEventListener('devicemotion', handleMotion, true);
+        window.addEventListener('devicemotion', handleMotion);
     } else {
         // Device does not support accelerometer events
         console.log('Accelerometer not supported on this device.');
