@@ -1,3 +1,5 @@
+var imageUrl = 'https://picsum.photos/300/300';
+
 function shuffelPieces(){
     const puzzleContainer = document.getElementById('puzzle-container');
     const puzzlePieces = puzzleContainer.querySelectorAll('.puzzle-piece');
@@ -179,9 +181,6 @@ function puzzleSolved(){
 
 
 document.addEventListener('DOMContentLoaded', function () {
-
-    // Sample image URL
-    var imageUrl = 'https://picsum.photos/300/300';
 
     // Event listener for drag over on the puzzle container
     document.getElementById('puzzle-container').addEventListener('dragover', (event) => {
