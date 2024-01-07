@@ -24,6 +24,7 @@ function startPuzzle(){
 }
 
 function getStart() {
+    console.log(document.getElementById('start-btn'));
     if(document.getElementById('start-btn').style.display == 'none'){
         console.log('start-txt');
         return document.getElementById('start-txt');
