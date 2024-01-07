@@ -57,14 +57,6 @@ main{
     display: none;
 }
 
-.devicemotion #start-btn {
-    display: none;
-}
-
-.no-devicemotion #start-txt {
-    display: none;
-}
-
 #start-txt {
     text-align: center;
     position: fixed;
@@ -78,8 +70,6 @@ main{
     z-index: 3;
     visibility: visible;
 }
-
-
 
 
 #puzzle {

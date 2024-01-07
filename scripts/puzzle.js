@@ -37,12 +37,11 @@ function getStart() {
 }
 
 function hideStart() {
-    getStart();
-    //getStart().style.visibility = 'hidden';
+    getStart().style.visibility = 'hidden';
 }
 
 function showStart() {
-    //getStart().style.visibility = 'visible';
+    getStart().style.visibility = 'visible';
 }
 
 // Function to create puzzle pieces
@@ -195,9 +194,6 @@ document.addEventListener('DOMContentLoaded', function () {
     // Event listener for drop on the puzzle container
     document.getElementById('puzzle-container').addEventListener('drop', handleDrop);
 
-    document.getElementById('start-btn').addEventListener('click', toogleButton);
-    document.getElementById('start-btn').addEventListener('touchstart', toogleButton);
-
     document.getElementById('image-input').addEventListener('change', (event) => changeImage(event.target));
     document.getElementById('image-input').addEventListener('touchstart', (event) => changeImage(event.target));
 
@@ -206,7 +202,5 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Create puzzle pieces and drop targets on page load
     createPuzzlePieces();
-
-    
 });
 

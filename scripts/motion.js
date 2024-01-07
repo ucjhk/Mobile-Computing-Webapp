@@ -20,8 +20,6 @@ function MotionHandler(){
             return false;
         }
     }
-
-
 }
 
 const motionHandler = new MotionHandler();
@@ -31,30 +29,72 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('motion-request-btn').addEventListener('click', requestMotion);
     document.getElementById('motion-request-btn').addEventListener('touchstart', requestMotion);
 
+    function setSupportState(supports){
+        if(supports){
+            createStartText();
+            deleteStartButton();
+            window.addEventListener('devicemotion', handleMotion, true);
+        }
+        else{
+            createStartButton();
+            deleteStartText();
+            console.log(document.getElementById('start-btn'));
+            window.removeEventListener('devicemotion', handleMotion, true);
+        }
+    }
+
+    function createStartButton(){
+        var newButton = document.createElement('button');
+
+        // Assign a CSS class to the button
+        newButton.id = 'start-btn';
+        document.getElementById('puzzle-start').appendChild(newButton);
+        icon = document.createElement('i');
+        icon.classList.add('fa', 'fa-play');
+        newButton.appendChild(icon);
+        newButton.addEventListener('click', toogleButton);
+        newButton.addEventListener('touchstart', toogleButton);
+        
+    }
+
+    function deleteStartButton(){
+        if(document.getElementById('start-btn') != null){
+            var button = document.getElementById('start-btn');
+            button.parentNode.removeChild(button);
+        }
+    }
+
+    function createStartText(){
+        var text = document.createElement('p');
+
+        // Assign a CSS class to the button
+        text.id = 'start-txt';
+        text.innerHTML = 'Shake your phone to start';
+        document.getElementById('puzzle-start').appendChild(text);
+    }
+
+    function deleteStartText(){
+        if(document.getElementById('start-txt') != null){
+            var text = document.getElementById('start-txt');
+            text.parentNode.removeChild(text);
+        }
+    }
 
     function requestMotion() {
         // iOS 13+
         if(typeof DeviceMotionEvent.requestPermission === 'function'){
             DeviceMotionEvent.requestPermission()
                 .then(permissionState => {
-                    if (permissionState === 'granted') {
-                        window.addEventListener('devicemotion', handleMotion, true);
-                    }
+                    setSupportState(permissionState === 'granted');
                 })
                 .catch(console.error);
         }
     }
 
-    if (Modernizr.devicemotion) {
-        window.addEventListener('devicemotion', handleMotion, true);
-    } else {
-        // Device does not support accelerometer events
-        console.log('Accelerometer not supported on this device.');
-        document.getElementById('output').textContent = 'No support for deviceorientation';
-    }
+    setSupportState(Modernizr.devicemotion);
 
     function handleMotion(event) {
-        document.getElementById('output').textContent = event.acceleration.x;
+        if(event.acceleration.x === null) setSupportState(false);
         if(!motionHandler.finished){
             if(Math.abs(event.acceleration.x) > 2){
                 console.log('in motion'+ event.acceleration.x);
@@ -64,7 +104,6 @@ document.addEventListener('DOMContentLoaded', function () {
             else{
                 console.log('not in motion');
                 if(motionHandler.stop()){
-                    document.getElementById('output').textContent = 'stoped';
                     startPuzzle();
                 }
             }
