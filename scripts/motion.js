@@ -1,22 +1,18 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-    /* document.getElementById('motion-request-btn').addEventListener('click', requestMotion);
+    document.getElementById('motion-request-btn').addEventListener('click', requestMotion);
 
 
     function requestMotion() {
         // feature detect
-        if (typeof DeviceMotionEvent.requestPermission === 'function') {
           DeviceMotionEvent.requestPermission()
             .then(permissionState => {
               if (permissionState === 'granted') {
-                window.addEventListener('deviceorientation', handleMotion, true);
+                //window.addEventListener('deviceorientation', handleMotion, true);
               }
             })
             .catch(console.error);
-        } else {
-          // handle regular non iOS 13+ devices
-        }
-      } */
+      } 
 
     if (Modernizr.devicemotion) {
         window.addEventListener('deviceorientation', handleMotion, true);
