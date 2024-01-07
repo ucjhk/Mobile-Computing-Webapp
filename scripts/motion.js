@@ -9,14 +9,14 @@ document.addEventListener('DOMContentLoaded', function () {
           DeviceMotionEvent.requestPermission()
             .then(permissionState => {
               if (permissionState === 'granted') {
-                window.addEventListener('deviceorientation', handleMotion, true);
+                window.addEventListener('devicemotion', handleMotion, true);
               }
             })
             .catch(console.error);
       }
 
     if (Modernizr.devicemotion) {
-        window.addEventListener('deviceorientation', handleMotion, true);
+        window.addEventListener('devicemotion', handleMotion, true);
     } else {
         // Device does not support accelerometer events
         console.log('Accelerometer not supported on this device.');
@@ -24,13 +24,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function handleMotion(event) {
-        document.getElementById('output').textContent = event.alpha + ', ' + event.beta + ', ' + event.gamma;
-        // Access accelerometer data from the event object
-        const alpha = event.alpha; // rotation around z-axis
-        const beta = event.beta;   // rotation around x-axis
-        const gamma = event.gamma; // rotation around y-axis
-
-        // Do something with accelerometer data
-        console.log('Alpha:', alpha, 'Beta:', beta, 'Gamma:', gamma);
+        document.getElementById('output').textContent = event.acceleration;
     }
 });
