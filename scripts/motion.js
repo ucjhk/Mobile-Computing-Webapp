@@ -1,3 +1,29 @@
+function MotionHandler(){
+    this.started = false;
+    this.finished = false;
+    this.motionTimer = new Timer();
+
+    this.inMotion = function () {
+        if(!this.finished){
+            this.started = true;
+            this.motionTimer.start();
+        }
+    }
+
+    this.stop = function () {
+        if(this.motionTimer.stop() > 2 || this.started){
+            this.started = false;
+            this.finished = true;
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+
+}
+
 document.addEventListener('DOMContentLoaded', function () {
 
     document.getElementById('motion-request-btn').addEventListener('click', requestMotion);
@@ -5,8 +31,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     function requestMotion() {
-        if (typeof DeviceMotionEvent.requestPermission === 'function') {
-            // iOS 13+
+        // iOS 13+
+        if(typeof DeviceMotionEvent.requestPermission === 'function'){
             DeviceMotionEvent.requestPermission()
                 .then(permissionState => {
                     if (permissionState === 'granted') {
@@ -25,7 +51,20 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('output').textContent = 'No support for deviceorientation';
     }
 
+    const motionHandler = new MotionHandler();
+
     function handleMotion(event) {
         document.getElementById('output').textContent = event.acceleration.x + ' ' + event.acceleration.y + ' ' + event.acceleration.z;
+        if(!motionHandler.finished){
+            if(Math.abs(event.acceleration.x) > 2){
+                motionHandler.inMotion();
+                shufflePieces();
+            }
+            else{
+                if(motionHandler.stop()){
+                    toggleButton();
+                }
+            }
+        }
     }
 });

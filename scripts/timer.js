@@ -3,11 +3,11 @@ function Timer(){
     this.startTime = Date.now();
 
     this.start = function () {
-        startTime = Date.now();
+        this.startTime = Date.now();
     }
 
     this.stop = function () {
-        return ((Date.now() - startTime) / 1000).toFixed(1);
+        return ((Date.now() - this.startTime) / 1000).toFixed(1);
     }
 }
 

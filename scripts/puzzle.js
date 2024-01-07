@@ -67,10 +67,6 @@ document.addEventListener('DOMContentLoaded', function () {
             puzzlePieces.push(piece);
         }
 
-        /* // Shuffle puzzle pieces
-        shuffleArray(puzzlePieces); */
-
-        // Append shuffled pieces to the puzzle container
         puzzlePieces.forEach(piece => {
             puzzleContainer.appendChild(piece);
         });
