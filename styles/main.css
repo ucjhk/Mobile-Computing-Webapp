@@ -53,6 +53,10 @@ main{
     margin-right: 0.5em;
 }
 
+.devicemotion #motion-request-btn {
+    visibility: hidden;
+}
+
 
 
 #puzzle {
