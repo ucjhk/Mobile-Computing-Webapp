@@ -1,4 +1,4 @@
-if (Modernizr.deviceorientation, Modernizr.devicemotion) {
+if (Modernizr.devicemotion) {
     window.addEventListener('deviceorientation', handleOrientation, true);
 } else {
     // Device does not support accelerometer events
