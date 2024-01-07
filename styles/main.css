@@ -54,7 +54,7 @@ main{
 }
 
 .devicemotion #motion-request-btn {
-    visibility: hidden;
+    visibility: visible;
 }
 
 
