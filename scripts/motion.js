@@ -4,7 +4,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     async function requestDeviceOrientation() {
-        if (typeof DeviceOrientationEvent != 'undefined' && typeof DeviceOrientationEvent.requestPermission() === 'function') {
+        document.getElementById('output').textContent = 'hi';
+        if (typeof DeviceOrientationEvent.requestPermission === 'function') {
             document.getElementById('output').textContent = 'DeviceOrientationEvent is supported';
             try {
                 const permissionState = await DeviceOrientationEvent.requestPermission();
