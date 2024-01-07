@@ -25,9 +25,11 @@ function startPuzzle(){
 
 function getStart() {
     if(document.getElementById('start-btn').style.display == 'none'){
+        console.log('start-txt');
         return document.getElementById('start-txt');
     }
     else{
+        console.log('start-btn');
         return document.getElementById('start-btn');
     }
 }
