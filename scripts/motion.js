@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.log('not in motion');
                 if(motionHandler.stop()){
                     document.getElementById('output').textContent = 'stoped';
-                    //toogleButton();
+                    toogleButton();
                 }
             }
         }
