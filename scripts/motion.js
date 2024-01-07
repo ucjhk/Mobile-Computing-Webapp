@@ -1,15 +1,15 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-    document.getElementById('motion-request-btn').addEventListener('click', requestDeviceOrientation);
+    document.getElementById('motion-request-btn').addEventListener('click', requestMotion);
 
 
-    function requestDeviceOrientation() {
+    function requestMotion() {
         // feature detect
         if (typeof DeviceMotionEvent.requestPermission === 'function') {
           DeviceMotionEvent.requestPermission()
             .then(permissionState => {
               if (permissionState === 'granted') {
-                window.addEventListener('devicemotion', handleOrientation);
+                window.addEventListener('devicemotion', handleMotion, true);
               }
             })
             .catch(console.error);
@@ -19,14 +19,14 @@ document.addEventListener('DOMContentLoaded', function () {
       }
 
     if (Modernizr.devicemotion) {
-        window.addEventListener('deviceorientation', handleOrientation);
+        window.addEventListener('deviceorientation', handleMotion, true);
     } else {
         // Device does not support accelerometer events
         console.log('Accelerometer not supported on this device.');
         document.getElementById('output').textContent = 'No support for deviceorientation';
     }
 
-    function handleOrientation(event) {
+    function handleMotion(event) {
         document.getElementById('output').textContent = event.alpha + ', ' + event.beta + ', ' + event.gamma;
         // Access accelerometer data from the event object
         const alpha = event.alpha; // rotation around z-axis
