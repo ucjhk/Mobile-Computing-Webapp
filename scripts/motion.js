@@ -1,6 +1,7 @@
-if (typeof DeviceOrientationEvent != 'undefined' && typeof window.DeviceOrientationEvent.requestPermission === 'function') {
+if (typeof DeviceOrientationEvent != 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
+    document.getElementById('output').textContent = 'hi';
     try {
-        const permissionState = window.DeviceOrientationEvent.requestPermission();
+        const permissionState = await DeviceOrientationEvent.requestPermission();
         if (permissionState == 'granted') {
             window.addEventListener('deviceorientation', handleOrientation);
         }
