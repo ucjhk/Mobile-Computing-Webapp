@@ -5,14 +5,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     function requestMotion() {
-          DeviceMotionEvent.requestPermission()
-            .then(permissionState => {
-              if (permissionState === 'granted') {
-                window.addEventListener('devicemotion', handleMotion);
-              }
-            })
-            .catch(console.error);
-      }
+        if (typeof DeviceMotionEvent.requestPermission === 'function') {
+            // iOS 13+
+            DeviceMotionEvent.requestPermission()
+                .then(permissionState => {
+                    if (permissionState === 'granted') {
+                        window.addEventListener('devicemotion', handleMotion);
+                    }
+                })
+                .catch(console.error);
+        }
+    }
 
     if (Modernizr.devicemotion) {
         window.addEventListener('devicemotion', handleMotion);
