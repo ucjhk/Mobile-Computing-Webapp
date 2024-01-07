@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
 
     document.getElementById('motion-request-btn').addEventListener('click', requestMotion);
+    document.getElementById('motion-request-btn').addEventListener('touchstart', requestMotion);
 
 
     function requestMotion() {
