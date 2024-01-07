@@ -25,6 +25,7 @@ function startPuzzle(){
 
 function getStart() {
     console.log(document.getElementById('start-btn'));
+    console.log(document.getElementById('start-txt'));
     if(document.getElementById('start-btn').style.display == 'none'){
         console.log('start-txt');
         return document.getElementById('start-txt');
@@ -36,11 +37,12 @@ function getStart() {
 }
 
 function hideStart() {
-    getStart().style.visibility = 'hidden';
+    getStart();
+    //getStart().style.visibility = 'hidden';
 }
 
 function showStart() {
-    getStart().style.visibility = 'visible';
+    //getStart().style.visibility = 'visible';
 }
 
 // Function to create puzzle pieces
