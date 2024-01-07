@@ -57,11 +57,12 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('output').textContent = event.acceleration.x;
         if(!motionHandler.finished){
             if(Math.abs(event.acceleration.x) > 2){
-                document.getElementById('output').textContent = 'in motion';
+                console.log('in motion'+ event.acceleration.x);
                 motionHandler.inMotion();
                 shufflePieces();
             }
             else{
+                console.log('not in motion');
                 if(motionHandler.stop()){
                     document.getElementById('output').textContent = 'stoped';
                     //toogleButton();
