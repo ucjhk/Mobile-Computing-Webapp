@@ -54,16 +54,16 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function handleMotion(event) {
-        //document.getElementById('output').textContent = event.acceleration.x;
+        document.getElementById('output').textContent = event.acceleration.x;
         if(!motionHandler.finished){
             if(Math.abs(event.acceleration.x) > 2){
                 document.getElementById('output').textContent = 'in motion';
                 motionHandler.inMotion();
-                //shufflePieces();
+                shufflePieces();
             }
             else{
                 if(motionHandler.stop()){
-                    //toggleButton();
+                    toggleButton();
                 }
             }
         }
