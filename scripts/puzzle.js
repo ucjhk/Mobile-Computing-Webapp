@@ -216,6 +216,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function handleOrientation(event) {
+        document.getElementById('output').textContent = event.alpha + ', ' + event.beta + ', ' + event.gamma;
         // Access accelerometer data from the event object
         const alpha = event.alpha; // rotation around z-axis
         const beta = event.beta;   // rotation around x-axis
