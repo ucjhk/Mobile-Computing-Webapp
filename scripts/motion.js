@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if(Math.abs(event.acceleration.x) > 2){
                 document.getElementById('output').textContent = 'in motion';
                 motionHandler.inMotion();
-                //shufflePieces();
+                shufflePieces();
             }
             else{
                 if(motionHandler.stop()){
