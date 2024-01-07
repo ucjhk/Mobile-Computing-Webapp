@@ -24,6 +24,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function handleMotion(event) {
-        document.getElementById('output').textContent = event.acceleration.x + ' ' + event.acceleration.y + ' ' + event.acceleration.z;
+        document.getElementById('output').textContent = event.acceleration.;
     }
 });
