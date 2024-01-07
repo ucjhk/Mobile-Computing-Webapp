@@ -1,21 +1,8 @@
-function Timer(){
-
-    this.startTime = Date.now();
-
-    this.start = function () {
-        startTime = Date.now();
-    }
-
-    this.stop = function () {
-        return ((Date.now() - startTime) / 1000).toFixed(3);
-    }
-}
 
 document.addEventListener('DOMContentLoaded', function () {
 
     // Sample image URL
     var imageUrl = 'https://picsum.photos/300/300';
-    var timer = new Timer();
 
     // Event listener for drag over on the puzzle container
     document.getElementById('puzzle-container').addEventListener('dragover', (event) => {
@@ -33,16 +20,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     document.getElementById('select-number').addEventListener('change', (event) => changeSize(event.target.value));
     document.getElementById('select-number').addEventListener('touchstart', (event) => changeSize(event.target.value));
-
-    if (Modernizr.devicemotion) {
-        // Device supports accelerometer events
-    
-        // Add an event listener for the device orientation change
-        window.addEventListener('deviceorientation', handleOrientation, true);
-    } else {
-        // Device does not support accelerometer events
-        console.log('Accelerometer not supported on this device.');
-    }
 
     // Create puzzle pieces and drop targets on page load
     createPuzzlePieces();
@@ -113,11 +90,15 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function toogleButton() {
-        var button = document.getElementById('start-btn');
-        button.style.visibility = 'hidden';
+        hideButton();
         shuffelPieces();
         timer.start();
         window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function hideButton() {
+        var button = document.getElementById('start-btn');
+        button.style.visibility = 'hidden';
     }
 
     function showButton() {
@@ -214,28 +195,5 @@ document.addEventListener('DOMContentLoaded', function () {
         solvedScreen.classList.add('show');
         //solvedScreen.style.display = 'block';
     }
-
-    function handleOrientation(event) {
-        document.getElementById('output').textContent = event.alpha + ', ' + event.beta + ', ' + event.gamma;
-        // Access accelerometer data from the event object
-        const alpha = event.alpha; // rotation around z-axis
-        const beta = event.beta;   // rotation around x-axis
-        const gamma = event.gamma; // rotation around y-axis
-    
-        // Do something with accelerometer data
-        console.log('Alpha:', alpha, 'Beta:', beta, 'Gamma:', gamma);
-    }
-
-    // Function to shuffle array elements (Fisher-Yates algorithm)
-    function shuffleArray(array) {
-        let shuffledArray = Array.from(array);
-    
-        for (let i = shuffledArray.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
-        }
-    
-        return shuffledArray;
-    }   
 });
 
