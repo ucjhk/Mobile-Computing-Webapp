@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
         else{
             createStartButton();
             deleteStartText();
-            console.log(document.getElementById('start-btn'));
+
             window.removeEventListener('devicemotion', handleMotion, true);
         }
     }

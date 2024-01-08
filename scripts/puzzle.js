@@ -24,19 +24,11 @@ function startPuzzle(){
 }
 
 function getStart() {
-    console.log(document.getElementById('start-btn'));
-    console.log(document.getElementById('start-txt'));
-    if(document.getElementById('start-btn').style.display == 'none'){
-        console.log('start-txt');
-        return document.getElementById('start-txt');
-    }
-    else{
-        console.log('start-btn');
-        return document.getElementById('start-btn');
-    }
+    return document.getElementById('puzzle-start').children[0];
 }
 
 function hideStart() {
+    console.log(getStart().style);
     getStart().style.visibility = 'hidden';
 }
 
