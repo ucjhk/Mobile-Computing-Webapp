@@ -86,8 +86,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     console.log(Modernizr.devicemotion)
 
-    document.getElementById('overlay').children[1].addEventListener('input', (event) => requestMotion(event.target.value));
-    //document.getElementById('overlay').children[1].addEventListener('touchstart', requestMotion);
+    document.getElementById('overlay').children[1].addEventListener('change', (event) => requestMotion(event.target.value));
 
 
     function requestMotion(newValue) {
