@@ -53,10 +53,6 @@ main{
     margin-right: 0.5em;
 }
 
-.devicemotion #motion-request-btn {
-    display: none;
-}
-
 #start-txt {
     text-align: center;
     position: fixed;
