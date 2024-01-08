@@ -22,6 +22,57 @@ function MotionHandler(){
     }
 }
 
+function setSupportState(supports){
+    if(supports){
+        createStartText();
+        deleteStartButton();
+        window.addEventListener('devicemotion', handleMotion, true);
+    }
+    else{
+        createStartButton();
+        deleteStartText();
+
+        window.removeEventListener('devicemotion', handleMotion, true);
+    }
+}
+
+function createStartButton(){
+    var newButton = document.createElement('button');
+
+    // Assign a CSS class to the button
+    newButton.id = 'start-btn';
+    document.getElementById('puzzle-start').appendChild(newButton);
+    icon = document.createElement('i');
+    icon.classList.add('fa', 'fa-play');
+    newButton.appendChild(icon);
+    newButton.addEventListener('click', toogleButton);
+    newButton.addEventListener('touchstart', toogleButton);
+    
+}
+
+function deleteStartButton(){
+    if(document.getElementById('start-btn') != null){
+        var button = document.getElementById('start-btn');
+        button.parentNode.removeChild(button);
+    }
+}
+
+function createStartText(){
+    var text = document.createElement('p');
+
+    // Assign a CSS class to the button
+    text.id = 'start-txt';
+    text.innerHTML = 'Shake your phone to start';
+    document.getElementById('puzzle-start').appendChild(text);
+}
+
+function deleteStartText(){
+    if(document.getElementById('start-txt') != null){
+        var text = document.getElementById('start-txt');
+        text.parentNode.removeChild(text);
+    }
+}
+
 const motionHandler = new MotionHandler();
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -29,67 +80,6 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('motion-request-btn').addEventListener('click', requestMotion);
     document.getElementById('motion-request-btn').addEventListener('touchstart', requestMotion);
 
-    function setSupportState(supports){
-        if(supports){
-            createStartText();
-            deleteStartButton();
-            window.addEventListener('devicemotion', handleMotion, true);
-        }
-        else{
-            createStartButton();
-            deleteStartText();
-
-            window.removeEventListener('devicemotion', handleMotion, true);
-        }
-    }
-
-    function startListening(){
-        motionHandler.finished = false;
-        window.addEventListener('devicemotion', handleMotion, true);
-    }
-
-    if(document.getElementById('solved-screen').classList.contains('show')){
-        if(motionHandler.finished){
-            startListening();
-        }
-    }
-
-    function createStartButton(){
-        var newButton = document.createElement('button');
-
-        // Assign a CSS class to the button
-        newButton.id = 'start-btn';
-        document.getElementById('puzzle-start').appendChild(newButton);
-        icon = document.createElement('i');
-        icon.classList.add('fa', 'fa-play');
-        newButton.appendChild(icon);
-        newButton.addEventListener('click', toogleButton);
-        newButton.addEventListener('touchstart', toogleButton);
-        
-    }
-
-    function deleteStartButton(){
-        if(document.getElementById('start-btn') != null){
-            var button = document.getElementById('start-btn');
-            button.parentNode.removeChild(button);
-        }
-    }
-
-    function createStartText(){
-        var text = document.createElement('p');
-
-        // Assign a CSS class to the button
-        text.id = 'start-txt';
-        text.innerHTML = 'Shake your phone to start';
-        document.getElementById('puzzle-start').appendChild(text);
-    }
-
-    function deleteStartText(){
-        if(document.getElementById('start-txt') != null){
-            var text = document.getElementById('start-txt');
-            text.parentNode.removeChild(text);
-        }
-    }
 
     function requestMotion() {
         // iOS 13+
@@ -104,20 +94,4 @@ document.addEventListener('DOMContentLoaded', function () {
 
     setSupportState(Modernizr.devicemotion);
 
-    function handleMotion(event) {
-        if(event.acceleration.x === null) setSupportState(false);
-        if(!motionHandler.finished){
-            if(Math.abs(event.acceleration.x) > 2){
-                console.log('in motion'+ event.acceleration.x);
-                motionHandler.inMotion();
-                shufflePieces();
-            }
-            else{
-                console.log('not in motion');
-                if(motionHandler.stop()){
-                    startPuzzle();
-                }
-            }
-        }
-    }
 });

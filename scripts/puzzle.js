@@ -163,6 +163,8 @@ function checkPuzzleSolved() {
 
 function puzzleSolved(){
     showStart();
+    motionHandler.finished = false;
+    window.addEventListener('devicemotion', handleMotion, true);
     time = timer.stop();
     console.log(time);
     resetContainers(document.getElementById('select-number').value);
@@ -173,6 +175,23 @@ function puzzleSolved(){
     void solvedScreen.offsetWidth;
     solvedScreen.classList.add('show');
     //solvedScreen.style.display = 'block';
+}
+
+function handleMotion(event) {
+    if(event.acceleration.x === null) setSupportState(false);
+    if(!motionHandler.finished){
+        if(Math.abs(event.acceleration.x) > 2){
+            console.log('in motion'+ event.acceleration.x);
+            motionHandler.inMotion();
+            shufflePieces();
+        }
+        else{
+            console.log('not in motion');
+            if(motionHandler.stop()){
+                startPuzzle();
+            }
+        }
+    }
 }
 
 
