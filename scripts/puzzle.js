@@ -181,7 +181,7 @@ function handleMotion(event) {
     if(event.acceleration.x === null) setSupportState(false);
     else{
         if(!motionHandler.finished){
-            if(Math.abs(event.acceleration.x) > 2){
+            if(Math.abs(event.acceleration.x) > 3){
                 motionHandler.inMotion();
                 shufflePieces();
             }
