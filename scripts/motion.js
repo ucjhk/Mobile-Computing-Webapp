@@ -96,10 +96,8 @@ document.addEventListener('DOMContentLoaded', function () {
     function requestMotion() {
         // iOS 13+
         if(typeof DeviceMotionEvent.requestPermission === 'function'){
-            document.getElementById('overlay').children[0].innerHTML = 'test2';
             DeviceMotionEvent.requestPermission()
                 .then(permissionState => {
-                    document.getElementById('overlay').children[0].innerHTML = 'permissionState'+permissionState;
                     setSupportState(permissionState === 'granted');
                 })
                 .catch(console.error);
