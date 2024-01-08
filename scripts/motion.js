@@ -84,13 +84,16 @@ const motionHandler = new MotionHandler();
 
 document.addEventListener('DOMContentLoaded', function () {
 
-    document.getElementById('overlay').children[1].addEventListener('change', (event) => requestMotion(event.target.value));
+    document.getElementById('overlay').children[1].addEventListener('change', (event) => hideOverlay(event.target.value));
+    document.getElementById('overlay').children[1].addEventListener('click',requestMotion);
+    document.getElementById('overlay').children[1].addEventListener('touchstart',requestMotion);
 
-
-    function requestMotion(newValue) {
-        //document.getElementById('overlay').style.visibility = 'hidden';
+    function hideOverlay(newValue){
         document.getElementById('select-number').value = newValue;
-        document.getElementById('overlay').children[0].innerHTML = 'test';
+        document.getElementById('overlay').style.visibility = 'hidden';
+    }
+
+    function requestMotion() {
         // iOS 13+
         if(typeof DeviceMotionEvent.requestPermission === 'function'){
             document.getElementById('overlay').children[0].innerHTML = 'test2';
