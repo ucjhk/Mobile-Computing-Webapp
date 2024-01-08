@@ -28,7 +28,6 @@
                 <option value="25">5x5</option>
             </select>
             <input type="file" id="image-input" name="image" accept="image/*">
-            <button id="motion-request-btn"> Request Motion</button>
         </span>
         <section id="puzzle">
             <div id="puzzle-container"></div>
@@ -39,6 +38,15 @@
         <div id="solved-screen">
             <p>Puzzle Solved!</p>
             <p class="time">in 3.567 seconds</p>
+        </div>
+        <div id ="overlay">
+            <p>Choose your puzzle size:</p>
+            <select>
+                <option value="9">3x3</option>
+                <option value="16">4x4</option>
+                <option value="25">5x5</option>
+                <option value="" selected disabled>-----</option>
+            </select>
         </div>
     </main>
 

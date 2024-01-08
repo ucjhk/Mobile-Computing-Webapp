@@ -86,11 +86,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
     console.log(Modernizr.devicemotion)
 
-    document.getElementById('motion-request-btn').addEventListener('click', requestMotion);
-    document.getElementById('motion-request-btn').addEventListener('touchstart', requestMotion);
+    document.getElementById('overlay').children[1].addEventListener('input', (event) => requestMotion(event.target.value));
+    //document.getElementById('overlay').children[1].addEventListener('touchstart', requestMotion);
 
 
-    function requestMotion() {
+    function requestMotion(newValue) {
+        document.getElementById('overlay').style.visibility = 'hidden';
+        document.getElementById('select-number').value = newValue;
         // iOS 13+
         if(typeof DeviceMotionEvent.requestPermission === 'function'){
             DeviceMotionEvent.requestPermission()
