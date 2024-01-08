@@ -92,10 +92,13 @@ document.addEventListener('DOMContentLoaded', function () {
     function requestMotion(newValue) {
         document.getElementById('overlay').style.visibility = 'hidden';
         document.getElementById('select-number').value = newValue;
+        console.log(typeof DeviceMotionEvent.requestPermission);
         // iOS 13+
         if(typeof DeviceMotionEvent.requestPermission === 'function'){
+            console.log('test');
             DeviceMotionEvent.requestPermission()
                 .then(permissionState => {
+                    console.log(permissionState);
                     setSupportState(permissionState === 'granted');
                 })
                 .catch(console.error);
