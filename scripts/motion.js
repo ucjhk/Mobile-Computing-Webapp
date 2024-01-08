@@ -84,8 +84,6 @@ const motionHandler = new MotionHandler();
 
 document.addEventListener('DOMContentLoaded', function () {
 
-    console.log(Modernizr.devicemotion)
-
     document.getElementById('overlay').children[1].addEventListener('change', (event) => requestMotion(event.target.value));
 
 
