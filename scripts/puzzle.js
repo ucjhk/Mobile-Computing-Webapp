@@ -211,8 +211,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('select-number').addEventListener('change', (event) => changeSize(event.target.value));
     document.getElementById('select-number').addEventListener('touchstart', (event) => changeSize(event.target.value));
 
-    document.getElementById('overlay').children[1].addEventListener('change', (event) => changeSize(event.target.value));
-    document.getElementById('overlay').children[1].addEventListener('touchstart', (event) => changeSize(event.target.value));
+    document.getElementById('overlay').children[1].addEventListener('input', (event) => changeSize(event.target.value));
 
     // Create puzzle pieces and drop targets on page load
     createPuzzlePieces();
