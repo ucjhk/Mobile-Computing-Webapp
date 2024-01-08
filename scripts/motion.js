@@ -43,6 +43,17 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    function startListening(){
+        motionHandler.finished = false;
+        window.addEventListener('devicemotion', handleMotion, true);
+    }
+
+    if(document.getElementById('solved-screen').classList.contains('show')){
+        if(motionHandler.finished){
+            startListening();
+        }
+    }
+
     function createStartButton(){
         var newButton = document.createElement('button');
 
