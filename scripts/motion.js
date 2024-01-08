@@ -88,15 +88,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     function requestMotion(newValue) {
-        document.getElementById('overlay').style.visibility = 'hidden';
+        //document.getElementById('overlay').style.visibility = 'hidden';
         document.getElementById('select-number').value = newValue;
-        console.log(typeof DeviceMotionEvent.requestPermission);
+        document.getElementById('overlay').children[0].innerHTML = 'test';
         // iOS 13+
         if(typeof DeviceMotionEvent.requestPermission === 'function'){
-            console.log('test');
+            document.getElementById('overlay').children[0].innerHTML = 'test2';
             DeviceMotionEvent.requestPermission()
                 .then(permissionState => {
-                    console.log(permissionState);
+                    document.getElementById('overlay').children[0].innerHTML = 'permissionState'+permissionState;
                     setSupportState(permissionState === 'granted');
                 })
                 .catch(console.error);
