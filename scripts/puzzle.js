@@ -33,6 +33,8 @@ function hideStart() {
 
 function showStart() {
     getStart().style.visibility = 'visible';
+    motionHandler.finished = false;
+    window.addEventListener('devicemotion', handleMotion, true);
 }
 
 // Function to create puzzle pieces
@@ -162,8 +164,6 @@ function checkPuzzleSolved() {
 
 function puzzleSolved(){
     showStart();
-    motionHandler.finished = false;
-    window.addEventListener('devicemotion', handleMotion, true);
     time = timer.stop();
     console.log(time);
     resetContainers(document.getElementById('select-number').value);
