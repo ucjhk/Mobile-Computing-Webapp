@@ -63,8 +63,12 @@ main{
     color: var(--text-color);
     font-size: 20px;
     transform: translate(-50%, -50%);
-    z-index: 3;
+    z-index: 2;
     visibility: visible;
+}
+
+#puzzle-start{
+    z-index: 2;
 }
 
 
