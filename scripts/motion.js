@@ -23,6 +23,7 @@ function MotionHandler(){
 }
 
 function setSupportState(supports){
+    //console.log(supports);
     if(supports){
         createStartText();
         deleteStartButton();
@@ -37,6 +38,7 @@ function setSupportState(supports){
 }
 
 function createStartButton(){
+    deleteStartButton();
     var newButton = document.createElement('button');
 
     // Assign a CSS class to the button
@@ -58,6 +60,7 @@ function deleteStartButton(){
 }
 
 function createStartText(){
+    deleteStartText();
     var text = document.createElement('p');
 
     // Assign a CSS class to the button
@@ -73,9 +76,15 @@ function deleteStartText(){
     }
 }
 
+function checkAcceleration(event){
+    if(event.acceleration.x === null) setSupportState(false);
+}
+
 const motionHandler = new MotionHandler();
 
 document.addEventListener('DOMContentLoaded', function () {
+
+    console.log(Modernizr.devicemotion)
 
     document.getElementById('motion-request-btn').addEventListener('click', requestMotion);
     document.getElementById('motion-request-btn').addEventListener('touchstart', requestMotion);
@@ -93,5 +102,4 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     setSupportState(Modernizr.devicemotion);
-
 });

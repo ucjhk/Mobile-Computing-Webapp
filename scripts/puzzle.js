@@ -28,7 +28,6 @@ function getStart() {
 }
 
 function hideStart() {
-    console.log(getStart().style);
     getStart().style.visibility = 'hidden';
 }
 
@@ -177,18 +176,19 @@ function puzzleSolved(){
     //solvedScreen.style.display = 'block';
 }
 
+//TRigger setSupportstate nur beim
 function handleMotion(event) {
     if(event.acceleration.x === null) setSupportState(false);
-    if(!motionHandler.finished){
-        if(Math.abs(event.acceleration.x) > 2){
-            console.log('in motion'+ event.acceleration.x);
-            motionHandler.inMotion();
-            shufflePieces();
-        }
-        else{
-            console.log('not in motion');
-            if(motionHandler.stop()){
-                startPuzzle();
+    else{
+        if(!motionHandler.finished){
+            if(Math.abs(event.acceleration.x) > 2){
+                motionHandler.inMotion();
+                shufflePieces();
+            }
+            else{
+                if(motionHandler.stop()){
+                    startPuzzle();
+                }
             }
         }
     }
