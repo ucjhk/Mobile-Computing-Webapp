@@ -62,7 +62,7 @@ function createStartButton(){
     deleteStartButton();
     var newButton = document.createElement('button');
 
-    // Assign a CSS class to the button
+
     newButton.id = 'start-btn';
     document.getElementById('puzzle-start').appendChild(newButton);
     icon = document.createElement('i');
@@ -113,15 +113,12 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('overlay').style.visibility = 'hidden';
     }
 
-    // Check if the browser supports motion
-    //setSupportState(Modernizr.devicemotion);
-
-    //check if can handle device motion
+    //check browser and device can handle device motion
     function requestMotion() {
+        //browser can handle device motion
         if(Modernizr.devicemotion){
             // iOS
             if(typeof DeviceMotionEvent.requestPermission === 'function'){
-                console.log('lost');
                 DeviceMotionEvent.requestPermission()
                     .then(permissionState => {
                         setSupportState(permissionState === 'granted');
@@ -131,10 +128,10 @@ document.addEventListener('DOMContentLoaded', function () {
             // non iOS
             else
             {
-                console.log(WURFL.is_mobile);
                 setSupportState(WURFL.is_mobile);
             }
         }
+        //browser can't handle device motion
         else{
             setSupportState(false);
         }
