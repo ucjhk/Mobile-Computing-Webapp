@@ -130,6 +130,7 @@ document.addEventListener('DOMContentLoaded', function () {
             // non iOS
             else
             {
+                console.log(WURFL.is_mobile);
                 setSupportState(WURFL.is_mobile);
             }
         }
