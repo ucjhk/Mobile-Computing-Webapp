@@ -210,7 +210,7 @@ Functions to change puzzle based on device motion
 -------------------------------------------------------------------------------------*/
 
 function handleMotion(event) {
-    if(event.acceleration?.x === null || event.acceleration === null) setSupportState(false);
+    if(event.acceleration.x === null) setSupportState(false);
     else{
         //puzzle not started
         if(!motionHandler.finished){

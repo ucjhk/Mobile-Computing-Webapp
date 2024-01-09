@@ -114,22 +114,27 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Check if the browser supports motion
-    setSupportState(Modernizr.devicemotion);
+    //setSupportState(Modernizr.devicemotion);
 
-    //request permission for motion for ios 13+
+    //check if can handle device motion
     function requestMotion() {
-        // iOS 13+
-        if(typeof DeviceMotionEvent.requestPermission === 'function'){
-            try{
-            DeviceMotionEvent.requestPermission()
-                .then(permissionState => {
-                    setSupportState(permissionState === 'granted');
-                })
-                .catch(console.error);
+        if(Modernizr.devicemotion){
+            // iOS
+            if(typeof DeviceMotionEvent.requestPermission === 'function'){
+                DeviceMotionEvent.requestPermission()
+                    .then(permissionState => {
+                        setSupportState(permissionState === 'granted');
+                    })
+                    .catch(console.error);
             }
-            catch(e){
-                setSupportState(false);
+            // non iOS
+            else
+            {
+                setSupportState(WURFL.is_mobile);
             }
+        }
+        else{
+            setSupportState(false);
         }
     }
 });
