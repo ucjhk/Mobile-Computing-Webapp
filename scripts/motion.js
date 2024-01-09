@@ -84,7 +84,6 @@ function createStartText(){
     deleteStartText();
     var text = document.createElement('p');
 
-    // Assign a CSS class to the button
     text.id = 'start-txt';
     text.innerHTML = 'Shake your phone to start';
     document.getElementById('puzzle-start').appendChild(text);
