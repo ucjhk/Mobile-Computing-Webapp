@@ -54,25 +54,31 @@ function createPuzzlePieces(pieceSize = 9, boardSize = 300) {
     });
 }
 
+// Function to reset the puzzle board
 function resetContainers(pieceSize){
     const puzzleContainer = document.getElementById('puzzle-container');
     const puzzleBoard = document.getElementById('puzzle-board');
+    //Remove all puzzle pieces
     while (puzzleContainer.firstChild) {
         puzzleContainer.removeChild(puzzleContainer.firstChild);
     }
     while(puzzleBoard.firstChild){
         puzzleBoard.removeChild(puzzleBoard.firstChild);
     }
+    //Create new puzzle pieces
     createPuzzlePieces(pieceSize);
     showStart();
 }
 
+// Function to shuffle the puzzle pieces
 function shufflePieces(){
     const puzzleContainer = document.getElementById('puzzle-container');
     const puzzlePieces = puzzleContainer.querySelectorAll('.puzzle-piece');
+    //Remove all puzzle pieces
     while (puzzleContainer.firstChild) {
         puzzleContainer.removeChild(puzzleContainer.firstChild);
     }
+    //Add the pieces in a random order
     shuffleArray(puzzlePieces).forEach(piece => {
         piece.draggable = true;
         puzzleContainer.appendChild(piece);
@@ -120,12 +126,14 @@ function handleDrop(event) {
 Functions to handle the start of the puzzle
 -------------------------------------------------------------------------------------*/
 
+// Function when the puzzle is started
 function startPuzzle(){
     hideStart();
     timer.start();
     window.scrollTo(0, document.body.scrollHeight);
 }
 
+// Function to toggle the start button
 function toogleButton() {
     shufflePieces();
     startPuzzle();
@@ -195,7 +203,6 @@ function puzzleSolved(){
     solvedScreen.classList.remove('show');
     void solvedScreen.offsetWidth;
     solvedScreen.classList.add('show');
-    //solvedScreen.style.display = 'block';
 }
 
 /* -----------------------------------------------------------------------------------
@@ -203,13 +210,16 @@ Functions to change puzzle based on device motion
 -------------------------------------------------------------------------------------*/
 
 function handleMotion(event) {
-    if(event.acceleration.x === null) setSupportState(false);
+    if(event.acceleration?.x === null || event.acceleration === null) setSupportState(false);
     else{
+        //puzzle not started
         if(!motionHandler.finished){
+            //device i motion
             if(Math.abs(event.acceleration.x) > 3){
                 motionHandler.inMotion();
                 shufflePieces();
             }
+            //device not in motion
             else{
                 if(motionHandler.stop()){
                     startPuzzle();
