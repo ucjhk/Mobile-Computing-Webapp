@@ -96,11 +96,16 @@ document.addEventListener('DOMContentLoaded', function () {
     function requestMotion() {
         // iOS 13+
         if(typeof DeviceMotionEvent.requestPermission === 'function'){
+            try{
             DeviceMotionEvent.requestPermission()
                 .then(permissionState => {
                     setSupportState(permissionState === 'granted');
                 })
                 .catch(console.error);
+            }
+            catch(e){
+                setSupportState(false);
+            }
         }
     }
 
