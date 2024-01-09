@@ -107,7 +107,7 @@ function handleDrop(event) {
         // DraggedPiece already in drop target
         parent = event.target.parentElement;
         if(draggedPiece.parentElement.classList.contains('drop-target') && parent.classList.contains('drop-target')){
-            draggedPieceParent = draggedPiece.parentElement;
+            var draggedPieceParent = draggedPiece.parentElement;
             parent.appendChild(draggedPiece);
             draggedPieceParent.appendChild(event.target);
         }
@@ -214,7 +214,7 @@ function handleMotion(event) {
     else{
         //puzzle not started
         if(!motionHandler.finished){
-            //device i motion
+            //device in motion
             if(Math.abs(event.acceleration.x) > 3){
                 motionHandler.inMotion();
                 shufflePieces();

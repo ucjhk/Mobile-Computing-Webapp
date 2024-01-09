@@ -36,7 +36,6 @@ Functions to handle the motion of the device
 
 //Set if the device supports motion
 function setSupportState(supports){
-    //console.log(supports);
     if(supports){
         createStartText();
         deleteStartButton();
@@ -50,6 +49,7 @@ function setSupportState(supports){
     }
 }
 
+
 function checkAcceleration(event){
     if(event.acceleration.x === null) setSupportState(false);
 }
@@ -61,8 +61,6 @@ Functions to handle the start of the puzzle
 function createStartButton(){
     deleteStartButton();
     var newButton = document.createElement('button');
-
-
     newButton.id = 'start-btn';
     document.getElementById('puzzle-start').appendChild(newButton);
     icon = document.createElement('i');
@@ -83,7 +81,6 @@ function deleteStartButton(){
 function createStartText(){
     deleteStartText();
     var text = document.createElement('p');
-
     text.id = 'start-txt';
     text.innerHTML = 'Shake your phone to start';
     document.getElementById('puzzle-start').appendChild(text);

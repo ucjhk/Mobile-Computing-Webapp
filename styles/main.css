@@ -53,7 +53,7 @@ ID-Selectors
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgb(250, 235, 215, 0.5); /* Use RGBA to set opacity */
+    background-color: rgb(250, 235, 215, 0.5); 
     display: flex;
     align-items: center;
     justify-content: center;
@@ -145,7 +145,7 @@ ID-Selectors
     gap: 5px;
     padding-right: 2px;
     max-width: fit-content;
-    border: 3px solid var(--light-color); /* Border around the puzzle board */
+    border: 3px solid var(--light-color); 
 }
 
 /*Solved-Screen*/
@@ -197,13 +197,13 @@ Class-Selectors
     text-align: center;
     padding: 20px;
     font-size: 20px;
-    opacity: 1; /* Children with 100% opacity */
+    opacity: 1; 
 }
 
 /* Puzzle-Pieces */
 
 .drop-target {
-    background-color: var(--primary-color); /* Highlight color for drop areas */
+    background-color: var(--primary-color); 
     height: var(--piece-size);
     width: var(--piece-size);
     border: 1px solid var(--secondary-color);
