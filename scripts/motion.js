@@ -121,6 +121,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if(Modernizr.devicemotion){
             // iOS
             if(typeof DeviceMotionEvent.requestPermission === 'function'){
+                console.log('lost');
                 DeviceMotionEvent.requestPermission()
                     .then(permissionState => {
                         setSupportState(permissionState === 'granted');
