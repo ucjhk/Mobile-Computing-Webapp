@@ -1,8 +1,13 @@
+/* -----------------------------------------------------------------------------------
+Handles the motion of the device
+-------------------------------------------------------------------------------------*/
+
 function MotionHandler(){
     this.started = false;
     this.finished = false;
     this.motionTimer = new Timer();
 
+    // Function to handle when device is in motion
     this.inMotion = function () {
         if(!this.finished){
             this.started = true;
@@ -10,6 +15,7 @@ function MotionHandler(){
         }
     }
 
+    // Function to handle when device is not in motion
     this.stop = function () {
         if(this.motionTimer.stop() > 1 && this.started){
             this.started = false;
@@ -22,6 +28,13 @@ function MotionHandler(){
     }
 }
 
+const motionHandler = new MotionHandler();
+
+/* -----------------------------------------------------------------------------------
+Functions to handle the motion of the device
+-------------------------------------------------------------------------------------*/
+
+//Set if the device supports motion
 function setSupportState(supports){
     //console.log(supports);
     if(supports){
@@ -36,6 +49,14 @@ function setSupportState(supports){
         window.removeEventListener('devicemotion', handleMotion, true);
     }
 }
+
+function checkAcceleration(event){
+    if(event.acceleration.x === null) setSupportState(false);
+}
+
+/* -----------------------------------------------------------------------------------
+Functions to handle the start of the puzzle
+-------------------------------------------------------------------------------------*/
 
 function createStartButton(){
     deleteStartButton();
@@ -76,14 +97,13 @@ function deleteStartText(){
     }
 }
 
-function checkAcceleration(event){
-    if(event.acceleration.x === null) setSupportState(false);
-}
-
-const motionHandler = new MotionHandler();
+/* -----------------------------------------------------------------------------------
+When everything is loaded
+-------------------------------------------------------------------------------------*/
 
 document.addEventListener('DOMContentLoaded', function () {
 
+    // Add event listener to the select number
     document.getElementById('overlay').children[1].addEventListener('change', (event) => hideOverlay(event.target.value));
     document.getElementById('overlay').children[1].addEventListener('click',requestMotion);
     document.getElementById('overlay').children[1].addEventListener('touchstart',requestMotion);
@@ -93,6 +113,10 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('overlay').style.visibility = 'hidden';
     }
 
+    // Check if the browser supports motion
+    setSupportState(Modernizr.devicemotion);
+
+    //request permission for motion for ios 13+
     function requestMotion() {
         // iOS 13+
         if(typeof DeviceMotionEvent.requestPermission === 'function'){
@@ -108,6 +132,4 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
     }
-
-    setSupportState(Modernizr.devicemotion);
 });

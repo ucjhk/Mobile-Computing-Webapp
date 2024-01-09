@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Puzzle Game</title>
 
     <script src="scripts\modernizr-custom.js"></script>
 
-    <!-- Link to external CSS file -->
+    <!-- Link to CSS file -->
     <link rel="stylesheet" href="styles\main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -20,6 +21,7 @@
 
     <!-- Main -->
     <main>
+        <!-- Puzzle Settings -->
         <span id="settings">
             <label for="select-number">Image Size:</label>
             <select id="select-number" name="selectNumber">
@@ -29,16 +31,19 @@
             </select>
             <input type="file" id="image-input" name="image" accept="image/*">
         </span>
+        <!-- Puzzle -->
         <section id="puzzle">
             <div id="puzzle-container"></div>
             <section id="puzzle-start">
             </section>
             <div id="puzzle-board" class="drop-targets"></div>
         </section>
+        <!-- Solved Screen -->
         <div id="solved-screen">
             <p>Puzzle Solved!</p>
             <p class="time">in 3.567 seconds</p>
         </div>
+        <!-- Overlay at the start -->
         <div id ="overlay">
             <p>Choose your puzzle size:</p>
             <select>
@@ -50,6 +55,7 @@
         </div>
     </main>
 
+    <!-- Scripts -->
     <script src="scripts\helperFunctions.js"></script>
 
     <script src="scripts\timer.js"></script>

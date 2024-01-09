@@ -1,41 +1,10 @@
+
+//link to load default images from
 var imageUrl = 'https://picsum.photos/300/300';
 
-function shufflePieces(){
-    const puzzleContainer = document.getElementById('puzzle-container');
-    const puzzlePieces = puzzleContainer.querySelectorAll('.puzzle-piece');
-    while (puzzleContainer.firstChild) {
-        puzzleContainer.removeChild(puzzleContainer.firstChild);
-    }
-    shuffleArray(puzzlePieces).forEach(piece => {
-        piece.draggable = true;
-        puzzleContainer.appendChild(piece);
-    });
-}
-
-function toogleButton() {
-    shufflePieces();
-    startPuzzle();
-}
-
-function startPuzzle(){
-    hideStart();
-    timer.start();
-    window.scrollTo(0, document.body.scrollHeight);
-}
-
-function getStart() {
-    return document.getElementById('puzzle-start').children[0];
-}
-
-function hideStart() {
-    getStart().style.visibility = 'hidden';
-}
-
-function showStart() {
-    getStart().style.visibility = 'visible';
-    motionHandler.finished = false;
-    window.addEventListener('devicemotion', handleMotion, true);
-}
+/* -----------------------------------------------------------------------------------
+Functions to create and change the puzzle board
+-------------------------------------------------------------------------------------*/
 
 // Function to create puzzle pieces
 function createPuzzlePieces(pieceSize = 9, boardSize = 300) {
@@ -98,17 +67,21 @@ function resetContainers(pieceSize){
     showStart();
 }
 
-function changeSize(value){
-    document.documentElement.style.setProperty('--js-piece-count', value);
-    resetContainers(value);
+function shufflePieces(){
+    const puzzleContainer = document.getElementById('puzzle-container');
+    const puzzlePieces = puzzleContainer.querySelectorAll('.puzzle-piece');
+    while (puzzleContainer.firstChild) {
+        puzzleContainer.removeChild(puzzleContainer.firstChild);
+    }
+    shuffleArray(puzzlePieces).forEach(piece => {
+        piece.draggable = true;
+        puzzleContainer.appendChild(piece);
+    });
 }
 
-function changeImage(value){
-    if (value.files && value.files[0]) {
-        imageUrl = URL.createObjectURL(value.files[0]);
-        resetContainers(document.getElementById('select-number').value);
-    }
-}
+/* -----------------------------------------------------------------------------------
+Functions to handle drag and drop of the puzzle pieces
+-------------------------------------------------------------------------------------*/
 
 // Function to handle drop event on puzzle pieces
 function handleDrop(event) {
@@ -143,6 +116,55 @@ function handleDrop(event) {
     checkPuzzleSolved();
 }
 
+/* -----------------------------------------------------------------------------------
+Functions to handle the start of the puzzle
+-------------------------------------------------------------------------------------*/
+
+function startPuzzle(){
+    hideStart();
+    timer.start();
+    window.scrollTo(0, document.body.scrollHeight);
+}
+
+function toogleButton() {
+    shufflePieces();
+    startPuzzle();
+}
+
+function getStart() {
+    return document.getElementById('puzzle-start').children[0];
+}
+
+function hideStart() {
+    getStart().style.visibility = 'hidden';
+}
+
+function showStart() {
+    getStart().style.visibility = 'visible';
+    motionHandler.finished = false;
+    window.addEventListener('devicemotion', handleMotion, true);
+}
+
+/* -----------------------------------------------------------------------------------
+Functions to change the puzzle settings
+-------------------------------------------------------------------------------------*/
+
+function changeSize(value){
+    document.documentElement.style.setProperty('--js-piece-count', value);
+    resetContainers(value);
+}
+
+function changeImage(value){
+    if (value.files && value.files[0]) {
+        imageUrl = URL.createObjectURL(value.files[0]);
+        resetContainers(document.getElementById('select-number').value);
+    }
+}
+
+/* -----------------------------------------------------------------------------------
+Functions to handle the solved screen
+-------------------------------------------------------------------------------------*/
+
 // Function to check if the puzzle is solved
 function checkPuzzleSolved() {
     const puzzleBoard = document.getElementById('puzzle-board');
@@ -176,7 +198,10 @@ function puzzleSolved(){
     //solvedScreen.style.display = 'block';
 }
 
-//TRigger setSupportstate nur beim
+/* -----------------------------------------------------------------------------------
+Functions to change puzzle based on device motion
+-------------------------------------------------------------------------------------*/
+
 function handleMotion(event) {
     if(event.acceleration.x === null) setSupportState(false);
     else{
@@ -194,6 +219,9 @@ function handleMotion(event) {
     }
 }
 
+/* -----------------------------------------------------------------------------------
+When everything is loaded
+-------------------------------------------------------------------------------------*/
 
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -205,9 +233,11 @@ document.addEventListener('DOMContentLoaded', function () {
     // Event listener for drop on the puzzle container
     document.getElementById('puzzle-container').addEventListener('drop', handleDrop);
 
+    // Add event listener to change image
     document.getElementById('image-input').addEventListener('change', (event) => changeImage(event.target));
     document.getElementById('image-input').addEventListener('touchstart', (event) => changeImage(event.target));
 
+    // Add event listener to change puzzle size
     document.getElementById('select-number').addEventListener('change', (event) => changeSize(event.target.value));
     document.getElementById('select-number').addEventListener('touchstart', (event) => changeSize(event.target.value));
 

@@ -1,6 +1,11 @@
-/* External CSS styles go here */
+/* -----------------------------------------------------------------------------------
+External CSS styles
+ -------------------------------------------------------------------------------------*/
 @import url('constants.css');
 
+/* -----------------------------------------------------------------------------------
+CSS-Constants
+--------------------------------------------------------------------------------------*/
 :root {
     --piece-count: var(--js-piece-count, 9);
     --board-size: var(--js-board-size, 300px);
@@ -9,12 +14,14 @@
     --piece-size: calc(var(--board-size) / var(--piece-sqrt));
   }
 
+/* -----------------------------------------------------------------------------------
+Element-Selectors 
+--------------------------------------------------------------------------------------*/
+
 h1{
     font-size: 2em;
     color: var(--text-color);
 }
-
-
 
 body {
     font-family: var(--font-family);
@@ -36,6 +43,10 @@ main{
     margin: 0;
 }
 
+/*-----------------------------------------------------------------------------------
+ID-Selectors
+-------------------------------------------------------------------------------------*/
+
 #overlay {
     position: fixed;
     top: 0;
@@ -51,16 +62,7 @@ main{
     flex-direction: column;
 }
 
-.overlay-content {
-    background-color: var(--correct-color);
-    color: var(--secondary-color);
-    border-radius: 10px;
-    text-align: center;
-    padding: 20px;
-    font-size: 20px;
-    opacity: 1; /* Children with 100% opacity */
-}
-
+/* Puzzle-Settings*/
 
 #settings {
     display: flex;
@@ -79,6 +81,8 @@ main{
     margin-right: 0.5em;
 }
 
+/*Start-Options*/
+
 #start-txt {
     text-align: center;
     position: fixed;
@@ -95,21 +99,6 @@ main{
     visibility: visible;
 }
 
-#puzzle-start{
-    z-index: 2;
-}
-
-
-#puzzle {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    margin: 0;
-    margin-top: 2em;
-    gap: 1em;
-}
-
 #start-btn {
     margin-bottom: 10px;
     margin: -2em;
@@ -123,6 +112,22 @@ main{
     visibility: visible;
 }
 
+#puzzle-start{
+    z-index: 2;
+}
+
+/*Puzzle-Board*/
+
+#puzzle {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    margin-top: 2em;
+    gap: 1em;
+}
+
 #puzzle-container {
     background-color: var(--primary-color);
     display: grid;
@@ -134,14 +139,6 @@ main{
     gap: 5px;
 }
 
-
-.puzzle-piece {
-    width: var(--piece-size);
-    height: var(--piece-size);
-    background-size: var(--board-size) var(--board-size);
-    cursor: pointer;
-}
-
 #puzzle-board {
     display: grid;
     grid-template-columns: repeat(var(--piece-sqrt), var(--piece-size));
@@ -151,20 +148,7 @@ main{
     border: 3px solid var(--light-color); /* Border around the puzzle board */
 }
 
-.drop-target {
-    background-color: var(--primary-color); /* Highlight color for drop areas */
-    height: var(--piece-size);
-    width: var(--piece-size);
-    border: 1px solid var(--secondary-color);
-    position: relative;
-}
-
-.selected-piece {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
-}
+/*Solved-Screen*/
 
 #solved-screen {
     background-color: var(--correct-color);
@@ -202,7 +186,48 @@ main{
     }
 }
 
-/*********************************************************/
+/* -----------------------------------------------------------------------------------
+Class-Selectors
+-------------------------------------------------------------------------------------*/
+
+.overlay-content {
+    background-color: var(--correct-color);
+    color: var(--secondary-color);
+    border-radius: 10px;
+    text-align: center;
+    padding: 20px;
+    font-size: 20px;
+    opacity: 1; /* Children with 100% opacity */
+}
+
+/* Puzzle-Pieces */
+
+.drop-target {
+    background-color: var(--primary-color); /* Highlight color for drop areas */
+    height: var(--piece-size);
+    width: var(--piece-size);
+    border: 1px solid var(--secondary-color);
+    position: relative;
+}
+
+.puzzle-piece {
+    width: var(--piece-size);
+    height: var(--piece-size);
+    background-size: var(--board-size) var(--board-size);
+    cursor: pointer;
+}
+
+.selected-piece {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+
+/* -----------------------------------------------------------------------------------
+Media-Queries
+-------------------------------------------------------------------------------------*/
 @media (max-width: 45rem){
     #puzzle {
         display: flex;
@@ -227,10 +252,4 @@ main{
     #settings > input{
         margin-right: 0;
     }
-}
-
-/* Auch @media (min-device-width: 60rem) { */
-/* Einstellungen, die erst bei einer Anzeige mit einer Breite von mindestens 40 Zeichen der Schriftgröße wirken */
-@media (min-width: 60rem){
-	
 }
